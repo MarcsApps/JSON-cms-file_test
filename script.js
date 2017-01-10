@@ -11,6 +11,12 @@ window.onload = function(){
     var nonCacheableURL = 'js/data.json?nocache=' + (new   
         Date()).getTime();
 
+// $.get("url", data,
+//   function (data, textStatus, jqXHR) {
+    
+//   },
+//   "dataType"
+// );
         
     $.getJSON(nonCacheableURL, function(json) {
         // for (var i=0; i<json.length; i++) {
@@ -18,15 +24,28 @@ window.onload = function(){
         jdata = json.text;
         console.log("inside get json");
         
-    console.log(jdata);
-    console.log("/n");
-    console.log(json.text);
+    // console.log(jdata);
+    // console.log("/n");
+    // console.log(json.text);
 return jdata;
-       // }
       }
-    );
+    )
+    .done(function(){
+    console.log(jdata);
+    console.log("done");
+    console.log(json.text);
+    });
     return jdata;
-}
+};
+
+// button for saving to server
+
+var saveBut = document.getElementById('mySave')
+saveBut.addEventListener('click',function(event){
+
+});
+
+
 
 // save data
 function saveData(jsondata) {
@@ -38,7 +57,7 @@ function saveData(jsondata) {
 
 
   //your code here
-console.log("hi js");
+ 
 var myEl = document.getElementById('myEl');
 myEl.addEventListener('click', function(event) {
     event.preventDefault();
@@ -48,7 +67,7 @@ myEl.addEventListener('click', function(event) {
     var myP1 = document.getElementById('p1');
     // myP1.innerHTML = "This is the text I've changed it to.";
     readData(); 
-    console.log(jdata);
+    console.log("original call" + jdata);
     myP1.innerHTML=jdata;
 }, false);
 
