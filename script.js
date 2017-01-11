@@ -6,8 +6,9 @@ window.onload = function(){  // WRAP EVERYTHING.
  var jdata = "";
  
  
-myOnClicks("b1","p0",0);
-myOnClicks("b2","p1",0);
+myOnClicks("b0","p0",0);
+myOnClicks("b1","p1",1);
+myOnClicks("b2","p2",1);
 
 function myOnClicks(eventID,elementTarget,indexHTML){
     $('#'+ eventID ).on('click', function(){
