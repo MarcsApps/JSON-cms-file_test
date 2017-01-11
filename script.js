@@ -4,30 +4,13 @@ window.onload = function(){  // WRAP EVERYTHING.
 // global only to test - TODO
 // TODO
     var jdata = "";
-
+ 
     // load json without caching
-function readData() {
-    var nonCacheableURL = 'http://localhost:3000/pages?nocache=' + (new
-        Date()).getTime();
-        
-        $.getJSON(nonCacheableURL, function(json) {
-        jdata = json[0].text;
-        return jdata;
-      })
 
-        .done(function(){
-    console.log(`####  ${new Date().getTime()}  ${jdata}`);
-    var myP1 = document.getElementById('p1');
-    myP1.innerHTML=jdata;
-    $('#p0').innerHTML="" ;
-    
-    });
-    return jdata;
-};
 
 // button for saving to server
-
 var saveBut = document.getElementById('mySave')
+
 saveBut.addEventListener('click',function(event){
 
 });
@@ -48,15 +31,39 @@ function saveData(jsondata) {
 var myEl = document.getElementById('myEl');
 myEl.addEventListener('click', function(event) {
     // event.preventDefault();
-     
-    console.log(Array(3).join('\n'));
-    console.log(`####  ${new Date().getTime()} Clicked1`);
-   $('#p1').text("This is the text I've wit to.");
-    readData(); 
+    console.log(`####  ${new Date().getTime()} 1 Calling Load F()`);
+    readData("p0",0);
+        console.log("2 read data");
+    
 }, false);
+        console.log("5 after event");
 
 
-} //onload
+
+function readData(elM,index) {
+    var nonCacheableURL = 'http://localhost:3000/pages?nocache=' + (new
+        Date()).getTime();
+        console.log("1 getJson");
+        $.getJSON(nonCacheableURL, function(json) {
+        jdata = json[index].text;
+        console.log("3 json returned");
+        
+        return jdata;
+      })
+
+        .done(function(){
+        console.log("4 done");
+            
+    console.log(`####  ${new Date().getTime()}  ${jdata}`);
+    var myP1 = document.getElementById(elM);
+    myP1.innerHTML=jdata;
+    $('#p0').innerHTML="" ;
+    
+    });
+    //return jdata; // dont need return as only returns empty (async)
+};
+
+} // onload - wrap whole script
 
 
 
