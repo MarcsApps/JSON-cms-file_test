@@ -1,39 +1,26 @@
 
-window.onload = function(){
+window.onload = function(){  // WRAP EVERYTHING.
 
-// global only to test
+// global only to test - TODO
+// TODO
     var jdata = "";
 
-
-  function readData() {
-
     // load json without caching
-    var nonCacheableURL = 'js/data.json?nocache=' + (new   
+function readData() {
+    var nonCacheableURL = 'http://localhost:3000/pages?nocache=' + (new
         Date()).getTime();
+        
+        $.getJSON(nonCacheableURL, function(json) {
+        jdata = json[0].text;
+        return jdata;
+      })
 
-// $.get("url", data,
-//   function (data, textStatus, jqXHR) {
+        .done(function(){
+    console.log(`####  ${new Date().getTime()}  ${jdata}`);
+    var myP1 = document.getElementById('p1');
+    myP1.innerHTML=jdata;
+    $('#p0').innerHTML="" ;
     
-//   },
-//   "dataType"
-// );
-        
-    $.getJSON(nonCacheableURL, function(json) {
-        // for (var i=0; i<json.length; i++) {
-        // jdata[i] = json[i];
-        jdata = json.text;
-        console.log("inside get json");
-        
-    // console.log(jdata);
-    // console.log("/n");
-    // console.log(json.text);
-return jdata;
-      }
-    )
-    .done(function(){
-    console.log(jdata);
-    console.log("done");
-    console.log(json.text);
     });
     return jdata;
 };
@@ -60,15 +47,12 @@ function saveData(jsondata) {
  
 var myEl = document.getElementById('myEl');
 myEl.addEventListener('click', function(event) {
-    event.preventDefault();
-    // alert('Hello world');
-
-    //TEST CHANGING TEXT OF P1
-    var myP1 = document.getElementById('p1');
-    // myP1.innerHTML = "This is the text I've changed it to.";
+    // event.preventDefault();
+     
+    console.log(Array(3).join('\n'));
+    console.log(`####  ${new Date().getTime()} Clicked1`);
+   $('#p1').text("This is the text I've wit to.");
     readData(); 
-    console.log("original call" + jdata);
-    myP1.innerHTML=jdata;
 }, false);
 
 

@@ -1,2 +1,5 @@
-directions = json_decode($_POST['json']);
-var_dump(directions);
+
+
+$myFile = "testFile.txt";
+file_put_contents($myFile,$_POST['json']);
+echo '{ "success": true }';

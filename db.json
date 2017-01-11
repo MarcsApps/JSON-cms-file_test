@@ -1,0 +1,7 @@
+{
+    "pages": [{
+        "id":0,
+        "text": "This is the text loaded from a JSON file. It is loaded through AJAX, which is asynchronous.  This can  mean it doesn't load on the first button click, because the request hasn't been returned to the server yet."
+    }
+    ]
+}
